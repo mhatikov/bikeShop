@@ -1,0 +1,133 @@
+<app-main-menu></app-main-menu>
+<div class="content">
+    <form class="form-order-container" [ngSwitch]="step" class="_content-wrap" id="orderForm" action="#" 
+    [formGroup]="detailsForm">
+        <fieldset class="goods-details__container form-order-container__step-container" *ngSwitchCase="0" form="orderForm"
+        formGroupName="goods">
+            <label for="goodsInput" class="form-order-container__label-input">Goods:</label> <br />
+            <input type="text" name="goods" id="goodsInput" placeholder="Change a product" class="form-order-container__input"
+            (click)="revertDisplayProductList()"
+            (keyup)="initGoodsRegExp($event)"
+            formControlName="product"
+            #goodsInput
+            >
+            <ul class="goods-details__dropdown-list dropdown-list" *ngIf="displayDropDownList" #dropdownList>
+                <li class="dropdown-list__item" 
+                *ngFor="let product of products" 
+                [ngStyle]="{display: checkValidGoodsName(product.name) ? 'flex' : 'none'}"
+                (click)="selectProduct(product.name)"
+                >
+                    <div class="dropdown-list__item-logo">
+                        <img [src]="product.imgUrl" alt="#">
+                    </div>
+                    <div class="dropdown-list__item-name-wrap">
+                        <div class="dropdown-list__item-name">{{product.name}}</div>
+                        <div class="dropdown-list__item-description">{{product.description | charLimit: 205}}</div>
+                    </div>
+                </li>
+            </ul>
+            <div class="form-order-container__error goods-details__error" *ngIf="goodsStep === false">Please entry or choose correct data</div>
+        </fieldset>
+        <fieldset class="delivery-details__container form-order-container__step-container" *ngSwitchCase="1"
+        formGroupName="address">
+            <label for="deliveryCountryInput" class="form-order-container__label-input">Country:</label> <br />
+            <input type="text" name="deliveryCountry" id="deliveryCountryInput" placeholder="Country" class="form-order-container__input"
+            formControlName="country">
+            <label for="deliveryCityInput" class="form-order-container__label-input">City:</label> <br />
+            <input type="text" name="deliveryCity" id="deliveryCityInput" placeholder="City" class="form-order-container__input"
+            formControlName="city">
+            <label for="deliveryAddressInput" class="form-order-container__label-input">Address:</label> <br />
+            <input type="text" name="deliveryAddress" id="deliveryAddressInput" placeholder="Address" class="form-order-container__input"
+            formControlName="street">
+            <div class="form-order-container__error goods-details__error" *ngIf="deliveryStep === false">Please entry or choose correct data</div>
+        </fieldset>
+        <fieldset class="payment-method__container form-order-container__step-container" *ngSwitchCase="2"
+        formGroupName="payment">
+            <input type="radio" name="paymentType" id="paymentCardInput" class="payment-method__input" formControlName="paymentType" value="Card">
+            <label for="paymentCardInput" class="form-order-container__label-input payment-method__label form-order-container__label-radio" id="paymentCardLabel">
+                Card
+            </label>
+            <input type="radio" name="paymentType" id="paymentPayPalInput" class="payment-method__input" formControlName="paymentType" value="PayPal">
+            <label for="paymentPayPalInput" class="form-order-container__label-input payment-method__label form-order-container__label-radio" id="paymentPayPalLabel">
+                PayPal
+            </label>
+            <input type="radio" name="paymentType" id="paymentCashInput" class="payment-method__input" formControlName="paymentType" value="Cash">
+            <label for="paymentCashInput" class="form-order-container__label-input payment-method__label form-order-container__label-radio" id="paymentCashLabel">
+                Cash
+            </label>
+            <div class="payment-method__card-details" *ngIf="this.detailsForm.get(['payment', 'paymentType'])?.value === 'Card'" 
+            formGroupName="card">
+                <label for="cardNumberInput" class="payment-method__label-input">Card-Number:</label>
+                <input type="text" name="cardNumber" id="cardNumberInput" class="payment-method__card-details-input form-order-container__input" formControlName="cardNumber"><br />
+                <label for="cardCvvInput" class="payment-method__label-input">Card-CVV:</label>
+                <input type="password" name="cardCvv" id="cardCvvInput" class="payment-method__card-details-input form-order-container__input" formControlName="cardCvv"><br />
+                <label for="cardMonthInput" class="payment-method__label-input">Date:</label>
+                <input type="text" name="cardMonth" id="cardMonthInput" class="payment-method__card-details-input form-order-container__input" formControlName="cardMonth">
+                <label for="cardYearInput" class="payment-method__label-input payment-method__label-date-input">/</label>
+                <input type="text" name="cardYear" id="cardYearInput" class="payment-method__card-details-input form-order-container__input" formControlName="cardYear">
+            </div>
+            <div class="form-order-container__error goods-details__error" *ngIf="paymentStep === false">Please entry or choose correct data</div>
+        </fieldset>
+        <fieldset class="form-order-container__step-container delivery__container" *ngSwitchCase="3"
+        formGroupName="delivery">
+            <input type="radio" name="deliveryType" id="deliveryTodayInput" class="delivery__input" formControlName="deliveryType" value="today">
+            <label for="deliveryTodayInput" class="delivery__label-input form-order-container__label-radio" id="deliveryTodayLabel"> Today</label>
+            <input type="radio" name="deliveryType" id="deliveryTomorrowInput" class="delivery__input" formControlName="deliveryType" value="tomorrow">
+            <label for="deliveryTomorrowInput" class="delivery__label-input form-order-container__label-radio" id="deliveryTomorrowLabel"> Tomorrow</label>
+            <input type="radio" name="deliveryType" id="deliveryDateInput" class="delivery__input" formControlName="deliveryType" value="date">
+            <label for="deliveryDateInput" class="delivery__label-input form-order-container__label-radio" id="deliveryDateLabel"> Change Date</label>
+            <div class="delivary__organaizer" *ngIf="displayOrganaizer()">
+                <app-organaizer (onSelectDate)="getCustomDate($event)"></app-organaizer>
+            </div>
+            <div class="form-order-container__error goods-details__error" *ngIf="dateStep === false">Please entry or choose correct data</div>
+        </fieldset>
+        <div class="form-order-container__step-container submit-data__container" *ngSwitchCase="4">
+            <div class="submit-data__goods-deatails">
+                <span class="submit-data__goods-details-info">Product: </span><span class="submit-data__content">{{detailsForm.get(['goods', 'product'])?.value}}</span>
+            </div>
+            <div class="submit-data__address-details">
+                <p class="submit-data__info-container"> 
+                    <span class="submit-data__address-details-info">Country: </span> <span class="submit-data__content"> {{detailsForm.get(['address', 'country'])?.value}} </span>
+                </p>
+                <p class="submit-data__info-container"> 
+                    <span class="submit-data__address-details-info">City: </span> <span class="submit-data__content"> {{detailsForm.get(['address', 'city'])?.value}} </span>
+                </p>
+                <p class="submit-data__info-container"> 
+                    <span class="submit-data__address-details-info">Street: </span> <span class="submit-data__content"> {{detailsForm.get(['address', 'street'])?.value}} </span>
+                </p>
+            </div>
+            <div class="submit-data__payment-method">
+                <p class="submit-data__info-container"> 
+                    <span class="submit-data__payment-method-info">Payment-method: </span> <span class="submit-data__content"> {{detailsForm.get(['payment', 'paymentType'])?.value}} </span>
+                </p>
+                <div *ngIf="detailsForm.get(['payment', 'paymentType'])?.value === 'Card'">
+                    <p class="submit-data__info-container"> 
+                        <span class="submit-data__payment-method-info">Card-number: </span> <span class="submit-data__content"> {{detailsForm.get(['payment', 'card', 'cardNumber'])?.value}} </span>
+                    </p>
+                </div>
+            </div>
+            <div class="submit-data__delivery-deatails">
+                <p class="submit-data__info-container"> 
+                    <span class="submit-data__payment-method-info">Delivery-type: </span> <span class="submit-data__content"> {{detailsForm.get(['delivery', 'deliveryType'])?.value}} </span>
+                </p>
+                <div *ngIf="detailsForm.get(['delivery', 'deliveryType'])?.value === 'date'">
+                    <p class="submit-data__info-container"> 
+                        <span class="submit-data__payment-method-info">Delivery-date: </span> <span class="submit-data__content"> {{detailsForm.get(['delivery', 'date'])?.value}} </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form-order-container__btns-wrap">
+            <button class="form-order-container__btn-prev form-order-container__control-btns"
+            (click)="previousStep()">Previous</button>
+            <button class="form-order-container__btn-next form-order-container__control-btns" 
+            [ngSwitch]="step"
+            (click)="submitForm()"
+            >
+                <span *ngSwitchDefault>Next</span>
+                <span *ngSwitchCase="4">Submit</span>
+            </button>
+        </div>
+    </form>
+</div>
+<app-footer></app-footer>

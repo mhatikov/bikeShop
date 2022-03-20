@@ -1,0 +1,48 @@
+<div class="content _content-wrap">
+    <div class="content__title">
+        <span>Contact-form:</span>
+    </div>
+    <form action="#" class="contact-form">
+        <div class="contact-form__input-wrapper first-name__wrap">
+            <label for="firstNameInput" class="contact-form__label first-name__label">First-name:</label>
+            <input type="text" name="firstName" id="firstNameInput" class="contact-form__input first-name__input" 
+            required
+            [(ngModel)]= "contactFormValues.firstName"
+            #firstName="ngModel">
+            <div class="contact-form__error-message first-name__error" 
+            *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">Please entry or choose correct data</div>
+        </div>
+        <div class="contact-form__input-wrapper sure-name__wrap">
+            <label for="sureNameInput" class="contact-form__label sure-name__label">Sure-name:</label>
+            <input type="text" name="sureName" id="sureNameInput" class="contact-form__input sure-name__input" 
+            required
+            [(ngModel)]= "contactFormValues.sureName"
+            #sureName="ngModel">
+            <div class="contact-form__error-message sure-name__error"
+            *ngIf="sureName.invalid && (sureName.dirty || sureName.touched)">Please entry or choose correct data</div>
+        </div>
+        <div class="contact-form__input-wrapper email__wrap">
+            <label for="emailInput" class="contact-form__label email__label">E-mail:</label>
+            <input type="email" name="email" id="emailInput" class="contact-form__input email__input" 
+            required
+            email
+            [(ngModel)]= "contactFormValues.email"
+            #email="ngModel">
+            <div class="contact-form__error-message email__error"
+            *ngIf="email.invalid && (email.dirty || email.touched)">Please entry or choose correct data</div>
+        </div>
+        <div class="contact-form__input-wrapper description__wrap">
+            <label for="descriptionInput" class="contact-form__label description__label">Description:</label>
+            <input type="text" name="description" id="descriptionInput" class="contact-form__input description__input" 
+            required
+            [(ngModel)]= "contactFormValues.description"
+            #description="ngModel">
+            <div class="contact-form__error-message description__error"
+            *ngIf="description.invalid && (description.dirty || description.touched)">Please entry or choose correct data</div>
+        </div>
+        <div class="contact-form__btns-wrap">
+            <button class="contact-form__submit-btn" (click)="submitForm()"
+            [disabled]="checkValidation()">Submit</button>
+        </div>
+    </form>
+</div>

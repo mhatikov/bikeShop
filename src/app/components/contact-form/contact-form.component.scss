@@ -1,0 +1,67 @@
+.content{
+    &__title{
+        font-size: 42px;
+        color: #fbd784;
+        margin-bottom: 25px;
+    }
+}
+.contact-form {
+
+    &__input-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        &:last-child{
+            margin-bottom: 0px;
+        }
+    }
+
+    &__label {
+        display: block;
+        font-size: 22px;
+    }
+
+    &__input {
+        padding: 10px;
+        font-size: 18px;
+        margin-top: 15px;
+        border: 1px solid black;
+    }
+
+    &__input.ng-touched.ng-invalid{
+        border: 2px solid red;
+    }
+    &__input.ng-touched.ng-valid{
+        border: 2px solid green;
+    }
+
+    &__btns-wrap {
+        width: 100%;
+        margin: 25px 0px;
+    }
+
+    &__submit-btn {
+        width: 100%;
+        height: 50px;
+        background-color: rgb(82, 82, 107);
+        color: white;
+        font-size: 20px;
+        &:disabled{
+            background-color: gray;
+            cursor: default;
+        }
+        &:not([disabled]):hover{
+            background-color: rgb(50, 50, 65);
+        }
+    }
+
+    &__error-message{
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        background-color: pink;
+        border: 1px solid red;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+}

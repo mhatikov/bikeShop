@@ -1,0 +1,123 @@
+.product-list {
+
+		&__title {
+            padding-top: 100px;
+            h2{
+                font-size: 50px;
+                color: #fbd784;
+                display: flex;
+                align-items: center;
+                &::before{
+                    flex: 0 0 70px;
+                    margin: 0px 30px 0px 0px;
+                    background-color: #fbd784;
+                    height: 1px;
+                    content: "";
+                    letter-spacing: 6px;
+                }
+                @media (max-width:1200px) {
+                    font-size: 35px;
+                    &::before{
+                        flex: 0 0 30px;
+                    }
+                }
+            }
+		}
+		&__title-brief {
+            font-size: 22px;
+            color: black;
+            margin-top: 25px;
+            @media (max-width:1200px) {
+                margin-top: 10px;
+                font-size: 18px;
+            }
+		}
+        &__content{
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: center;
+            @media (max-width:1200px) {
+                margin-top: 20px;
+            }
+        }
+        &__item{
+            width: 230px;
+            min-height: 380px;
+            background-color: white;
+            margin-bottom: 25px;
+            margin-right: 20px;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            outline: 2px solid gray;
+            position: relative;
+            &:hover{
+                outline: 3px solid #fbd784;
+                cursor: pointer;
+            }
+        }
+}
+
+.item {
+
+    &__title {
+        max-width: 70%;
+        width: auto;
+        height: 30px;
+        background-color: red;
+        text-align: center;
+        color: white;
+        font-size: 22px;
+        padding-top: 4px;
+        text-transform: uppercase;
+    }
+
+    &__img-wrap {
+        margin-top: 15px;
+        width: 100%;
+        height: auto;
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    &__name {
+        width: 100%;
+        height: auto;
+        color: black;
+        font-size: 18px;
+        overflow-wrap: anywhere;
+    }
+
+    &__year {
+        margin-top: 10px;
+        width: auto;
+        color: gray;
+        font-size: 20px;
+        align-self: flex-end;
+    }
+
+    &__price {
+        margin-top: 20px;
+        text-align: center;
+        width: 100%;
+        color: red;
+        font-size: 30px;
+    }
+
+    &__discount{
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        right: 10px;
+        text-align: center;
+        padding-top: 12px;
+        font-size: 22px;
+    }
+}

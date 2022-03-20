@@ -1,0 +1,41 @@
+<section class="map _content-wrap">
+    <agm-map
+    [latitude]="lat"
+    [longitude]="lon"
+    [zoom]="15"
+    >
+    <agm-marker *ngFor="let marker of markers"
+    [latitude]="marker.lat"
+    [longitude]="marker.lon"
+    [opacity]="marker.opacity"></agm-marker>
+    </agm-map>
+</section>
+<section class="contact-info _content-wrap">
+    <div class="contact-info__wrapper">
+        <h2 class="contact-info__title">Contact info</h2>
+        <div class="contact-info__items">
+            <div class="contact-info__content address-shop__item" *ngFor="let address of addresses">
+                <div class="address-shop__item-content">
+                    <h3 class="address-shop__item-title">Country:</h3>
+                    <div class="address-shop__item-info">{{address.country}}</div>
+                </div>
+                <div class="address-shop__item-content">
+                    <h3 class="address-shop__item-title">City:</h3>
+                    <div class="address-shop__item-info">{{address.city}}</div>
+                </div>
+                <div class="address-shop__item-content">
+                    <h3 class="address-shop__item-title">Street:</h3>
+                    <div class="address-shop__item-info">{{address.street}}</div>
+                </div>
+                <div class="address-shop__item-content">
+                    <h3 class="address-shop__item-title">House:</h3>
+                    <div class="address-shop__item-info">{{address.home}}</div>
+                </div>
+                <div class="address-shop__item-content">
+                    <h3 class="address-shop__item-title">Postal Code:</h3>
+                    <div class="address-shop__item-info">{{address.postalCode}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

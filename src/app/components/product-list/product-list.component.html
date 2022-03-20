@@ -1,0 +1,22 @@
+<div class="wrapper _content-wrap">
+    <section class="product-list__title">
+        <h2>Bikes</h2>
+        <p class="product-list__title-brief">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt, nemo. Provident cupiditate rem voluptatum officia quia a harum doloribus velit.</p>
+    </section>
+    <div class="product-list__content">
+        <div class="product-list__item item" 
+        *ngFor="let item of items | async" 
+        [ngStyle]="{outlineColor: item.getColor()}"
+        [routerLink]="['product', item.id]">
+            <div class="item__discount" [ngStyle]="{backgroundColor: item.getColor()}" 
+            *ngIf="item.discount > 0">{{item.discount | addChar:'%'}}</div>
+            <div class="item__title" [ngStyle]="{backgroundColor: item.getColor()}">{{item.shop}}</div>
+            <div class="item__img-wrap">
+                <img alt="#" class="item__img" [src]='item.imgUrl'>
+            </div>
+            <div class="item__name">{{item.description | charLimit: 35}}</div>
+            <div class="item__year">{{item.name}}</div>
+            <div class="item__price" [ngStyle]="{color: item.getColor()}">{{item.price | currency:'EUR':'symbol'}}</div>
+        </div>
+    </div>
+</div>

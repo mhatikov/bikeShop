@@ -1,0 +1,17 @@
+<div class="shadow-box" [ngStyle]="{background: changeBackgroundColor ? 'gray' : 'none'}">
+    <div class="_content-wrap">
+        <section class="main-menu__wrapper">
+                <div class="main-menu__logo logo__wrap">
+                    <div class="logo__img-wrap">
+                        <img src="/assets/logo.png" alt="#" class="logo__img">
+                    </div>
+                    <div class="logo__line"></div>
+                </div>
+                <ul class="main-menu__links links__items">
+                    <li class="links__item" *ngFor="let link of links">
+                        <span [routerLink]="link.linkPath">{{link.linkName}}</span>
+                    </li>
+                </ul>
+        </section>
+    </div>
+</div>

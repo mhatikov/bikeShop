@@ -1,0 +1,55 @@
+.map{
+    padding-top: 40px;
+}
+agm-map{
+    height: 70vh;
+}
+.contact-info {
+
+    &__wrapper {
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    &__title {
+        font-size: 42px;
+        color: #fbd784;
+    }
+
+    &__items {
+        padding-left: 5%;
+    }
+
+    &__content {
+    }
+}
+.address-shop {
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        padding-top: 50px;
+        &:first-child{
+            padding-top: 15px;
+        }
+        &:last-child{
+            margin-bottom: 30px;
+        }
+    }
+
+    &__item-content {
+        padding-top: 15px;
+        display: flex;
+    }
+
+    &__item-title {
+        font-size: 22px;
+        width: 12%;
+    }
+
+    &__item-info {
+        font-size: 22px;
+        width: 85%;
+        text-align: left;
+    }
+}

@@ -1,0 +1,73 @@
+<section class="product-info">
+    <div class="product-info__wrap _content-wrap" *ngIf="product">
+        <div class="product-info__image-content image-content">
+            <div class="image-content__img-wrap" [ngClass]="{'_modal-window': zoomImg}">
+                <img [src]="product.imgUrl[0]" alt="#" class="image-content__img">
+                <button class="image-content__btn-zoom" (click)="zoomImgListener($event)">+ zoom</button>
+            </div>
+            <div class="image-content__colors-wrap">
+                <span class="image-content__colors">{{product.getColorString()}}</span>
+            </div>
+        </div>
+        <div class="product-info__info-content info-content">
+            <div class="info-content__brief">
+                <h2 class="info-content__brief-title">{{product.name}}</h2>
+                <div class="info-content__brief-content">{{product.description | charLimit: charLimitValue}} <span (click)="readMoreListener($event)" 
+                *ngIf="product.description.length >= charLimitValue - 1">
+                    (Read More)
+                </span></div>
+                <div class="info-content__price">{{product.price | currency:'EUR':'symbol'}}</div>
+            </div>
+            <div class="info-content__reviews">
+                <div class="info-content__reviews-wrap">
+                    <div class="info-content__reviews-stars-content">
+                        <div class="info-content__reviews-rate-wrap">
+                            <div class="info-content__reviews-rate-star" *appStars= "product.getRate()" style="color: rgb(235, 235, 11);">&#9733;</div>
+                            <div class="info-content__reviews-rate-star" *appStars= "product.getRateRemains()">&#9734;</div>
+                        </div>
+                        <div class="info-content__reviews-count">({{product.getReviewCount()}})</div>
+                    </div>
+                    <div class="info-content__reviews-interaction">
+                        <div class="info-content__reviews-interaction-read">Read {{product.getReviewCount()}} Reviews</div>
+                        <div class="info-content__reviews-interaction-write">Write Review</div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-content__change-options">
+                <div class="info-content__select-wrapper">
+                    <h3 class="info-content__select-title">
+                        <label for="colorSelect" class="info-content__select-label">Color</label>
+                    </h3>
+                    <select name="color" id="colorSelect" class="info-content__select" #colorInfo>
+                        <option value="0">Select Color</option>
+                        <option [value]="item" *ngFor="let item of product.color">
+                            {{item}}
+                        </option>
+                    </select>
+                </div>
+                <div class="info-content__select-wrapper">
+                    <h3 class="info-content__select-title">
+                        <label for="sizeSelect" class="info-content__select-label">Size</label>
+                    </h3>
+                    <select name="size" id="sizeSelect" class="info-content__select" #sizeInfo>
+                        <option value="0">Select Size</option>
+                        <option [value]="item" *ngFor="let item of product.size">
+                            {{item}}
+                        </option>
+                    </select>
+                </div>
+                <div class="info-content__change-options-availability">
+                    <span style="font-size: 20px; font-weight: bold;">Availability:</span><span style="font-size: 20px;"> Please select the option</span>
+                </div>
+            </div>
+            <div class="info-content__buttons">
+                <div class="info-content__quantity-wrap">
+                    <label for="" class="info-content__quantity-label">Quantity</label>
+                    <input type="number" name="quantity" id="quantityInput" class="info-content__quantity-input" min="1" #quantity>
+                </div>
+                <button class="info-content__btn" id="addCard" disabled #addCard><fa-icon [icon]="iconCart"></fa-icon><span>Add to card</span></button>
+                <button class="info-content__btn" id="addWishList"><fa-icon [icon]="iconWishList"></fa-icon><span>Add to Wish List</span></button>
+            </div>
+        </div>
+    </div>
+</section>

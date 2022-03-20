@@ -1,0 +1,65 @@
+<app-main-menu></app-main-menu>
+<main class="content">
+    <section class="new-product__wrapper _content-wrap">
+        <div class="new-product__name-wrap new-product__unit-wrap name">
+            <label for="productNameInput" class="new-product__unit-title name__label">Product-name: </label>
+            <input type="text" name="productName" id="productNameInput" class="new-product__unit-input name__input"
+            [(ngModel)]="newProductObj.name"
+            required>
+        </div>
+        <div class="new-product__name-wrap new-product__unit-wrap shop">
+            <label for="productShopInput" class="new-product__unit-title shop__label">Shop: </label>
+            <input type="text" name="productShop" id="productShopInput" class="new-product__unit-input shop__input"
+            [(ngModel)]="newProductObj.shop"
+            required>
+        </div>
+        <div class="new-product__name-wrap new-product__unit-wrap description">
+            <label for="productDescriptionInput" class="new-product__unit-title description__label">Description: </label>
+            <textarea type="text" name="productDescription" id="productDescriptionInput" class="new-product__unit-input description__input" 
+            [(ngModel)]="newProductObj.description" 
+            required>
+            </textarea>
+        </div>
+        <div class="new-product__unit-wrap new-product__size-wrap size">
+            <label for="sizeInput" class="new-product__unit-title size__label">Size: </label>
+            <p-multiSelect [options]="sizeProduct" defaultLabel="Select a Size" optionLabel="value"
+            [(ngModel)]="newProductObj.size"
+            >
+            </p-multiSelect>
+        </div>
+        <div class="new-product__unit-wrap new-product__color-wrap color">
+            <label for="colorInput" class="new-product__unit-title color__label">Color: </label>
+            <p-multiSelect [options]="colorProduct" defaultLabel="Select a Color" optionLabel="value"
+            [(ngModel)]="newProductObj.color"
+            >
+            </p-multiSelect>
+        </div>
+        <div class="new-product__unit-wrap new-product__price-wrap price">
+            <label for="priceInput" class="new-product__unit-title price__label">Price: </label>
+            <input type="number" name="price" id="priceInput" class="new-product__unit-input price__input"
+            [(ngModel)]="newProductObj.price"
+            required>
+        </div>
+        <div class="new-product__unit-wrap new-product__file-uploader-wrap file-uploader">
+            <label for="fileUploaderInput" class="new-product__unit-title file-uploader__label">Choose files:</label>
+            <button class="file-uploader__btn-clear" (click)= "clearUploadedFiles($event)">Clear</button>
+            <input type="file" name="imageProduct" id="fileUploaderInput" class="file-uploader__input new-product__unit-input"
+            multiple="multiple"
+            (change)="uploadFile($event)"
+            #imageInput>
+            <div class="file-uploader__preview-wrap" *ngIf="fileUploaded.length > 0">
+                <div class="file-uploader__preview-item" *ngFor="let file of fileUploaded">
+                    <div class="file-uploader__img-wrap">
+                        <img [src]="file.imageUrl" alt="#" class="file-uploader__img">
+                    </div>
+                    <div class="file-uploader__info">{{(file.imageSize/1024).toFixed()}}kb</div>
+                </div>
+            </div>
+        </div>
+        <div class="new-product__unit-wrap submit">
+            <button class="submit__btn"
+            (click)="submitProduct()">Submit</button>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>

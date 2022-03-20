@@ -1,0 +1,30 @@
+.content{
+    margin-top: 80px;
+    min-height: 100vh;
+    
+    &__wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__wrap-btn{
+        width: 70%;
+    }
+}
+h2{
+    font-size: 64px;
+    text-align: center;
+    margin: 70px 0px;
+}
+button{
+    width: 100%;
+    font-size: 32px;
+    background-color: rgb(82, 82, 107);
+    color: white;
+    padding: 10px;
+
+    &:not([disabled]):hover{
+        background-color: rgb(50, 50, 65);
+    }
+}

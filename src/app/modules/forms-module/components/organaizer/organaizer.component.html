@@ -1,0 +1,85 @@
+<div class="calendar">
+    <div class="calendar__wrapper">
+        <div class="calendar__controlls">
+            <div class="calendar__date">{{MONTH[this.selectedMonth]}} {{selectedYear}}</div>
+            <div class="calendar__buttons">
+                <div class="calendar__button button__prev" (click)="decreaseSelectedMonth()">←</div>
+                <div class="calendar__button button__next" (click)="increaseSelectedMonth()">→</div>
+            </div>
+        </div>
+        <div class="calendar__days-name">
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+            <div>Sun</div>
+        </div>
+        <div class="calendar__days">
+            <div class="calendar__days-monday days__week" #daysWeek>
+                <div *ngFor="let day of generateDays(1)"
+                    [class.days__day]="true" [class._other]="checkOther(day)" 
+                    [class._today]="day == nowDate.getDate() && selectedMonth === nowDate.getMonth() && selectedYear === nowDate.getFullYear()"
+                    [appCheckActiveDay]="selectedDateObj"
+                    (click)="changeDate($event)">
+                    {{day}}
+                </div>
+            </div>
+            <div class="calendar__days-tuesday days__week" #daysWeek>
+                <div *ngFor="let day of generateDays(2)"
+                    [class.days__day]="true" [class._other]="checkOther(day)" 
+                    [class._today]="day == nowDate.getDate() && selectedMonth === nowDate.getMonth() && selectedYear === nowDate.getFullYear()"
+                    [appCheckActiveDay]="selectedDateObj"
+                    (click)="changeDate($event)">
+                    {{day}}
+                </div>
+            </div>
+            <div class="calendar__days-wednesday days__week" #daysWeek>
+                <div *ngFor="let day of generateDays(3)"
+                    [class.days__day]="true" [class._other]="checkOther(day)" 
+                    [class._today]="day == nowDate.getDate() && selectedMonth === nowDate.getMonth() && selectedYear === nowDate.getFullYear()"
+                    [appCheckActiveDay]="selectedDateObj"
+                    (click)="changeDate($event)">
+                    {{day}}
+                </div>
+            </div>
+            <div class="calendar__days-thursday days__week" #daysWeek>
+                <div *ngFor="let day of generateDays(4)"
+                    [class.days__day]="true" [class._other]="checkOther(day)" 
+                    [class._today]="day == nowDate.getDate() && selectedMonth === nowDate.getMonth() && selectedYear === nowDate.getFullYear()"
+                    [appCheckActiveDay]="selectedDateObj"
+                    (click)="changeDate($event)">
+                    {{day}}
+                </div>
+            </div>
+            <div class="calendar__days-friday days__week" #daysWeek>
+                <div *ngFor="let day of generateDays(5)"
+                    [class.days__day]="true" [class._other]="checkOther(day)" 
+                    [class._today]="day == nowDate.getDate() && selectedMonth === nowDate.getMonth() && selectedYear === nowDate.getFullYear()"
+                    [appCheckActiveDay]="selectedDateObj"
+                    (click)="changeDate($event)">
+                    {{day}}
+                </div>
+            </div>
+            <div class="calendar__days-saturday days__week" #daysWeek>
+                <div *ngFor="let day of generateDays(6)"
+                    [class.days__day]="true" [class._other]="checkOther(day)" 
+                    [class._today]="day == nowDate.getDate() && selectedMonth === nowDate.getMonth() && selectedYear === nowDate.getFullYear()"
+                    [appCheckActiveDay]="selectedDateObj"
+                    (click)="changeDate($event)">
+                    {{day}}
+                </div>
+            </div>
+            <div class="calendar__days-sunday days__week" #daysWeek>
+                <div *ngFor="let day of generateDays(0)"
+                    [class.days__day]="true" [class._other]="checkOther(day)" 
+                    [class._today]="day == nowDate.getDate() && selectedMonth === nowDate.getMonth() && selectedYear === nowDate.getFullYear()"
+                    [appCheckActiveDay]="selectedDateObj"
+                    (click)="changeDate($event)">
+                    {{day}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

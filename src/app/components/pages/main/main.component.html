@@ -1,0 +1,7 @@
+<app-main-menu [changeBackgroundColor]="changeBackgroundMenu"></app-main-menu>
+<app-parallax (mousemove)="sendDataParallax($event)" [coordXprocent]="coordXParallax" [coordYprocent]="coordYParallax"></app-parallax>
+<div class="content" #contentWrap>
+    <app-main-slider></app-main-slider>
+    <app-product-list></app-product-list>
+</div>
+<app-footer></app-footer>

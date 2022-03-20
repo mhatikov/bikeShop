@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-my-333316": {
+      "hosting": {
+        "firstAngularTask": [
+          "angular-my-333316"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-my-333316"
+  }
+}

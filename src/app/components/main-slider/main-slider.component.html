@@ -1,0 +1,18 @@
+<section class="main-slider-title _content-wrap">
+    <h2>Cell</h2>
+</section>
+<section class="wrapper _content-wrap" #sliderBox>
+    <div class="left-slide" #leftSlide>
+        <div class="left-slide__item" *ngFor="let item of slides" [style.backgroundColor]="item.titleBackgroundColor">
+            <h2 class="left-slide__item-title">{{item.slideTitle}}</h2>
+            <p class="left-slide__item-brief">{{item.slideBrief}}</p>
+        </div>
+    </div>
+    <div class="right-slide" #rightSlide>
+        <div class="right-slide__item" *ngFor="let item of slides" [style.backgroundImage]="item.imgUrl"></div>
+    </div>
+    <div class="action-btns">
+        <button class="bottom-btn" (click)="changeSlide('down')">&#9660;</button>
+        <button class="top-btn" (click)="changeSlide('up')">&#9650;</button>
+    </div>
+</section>
